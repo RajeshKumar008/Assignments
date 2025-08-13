@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>form</title>
+</head>
+
+<body>
+  <form>
+    Family name: <input type="text" placeholder="family name"><br>
+    Other name: <input type="text"><br>
+    Address: <input type="text"> <br>
+    Suburb state/territory: <select name="dropdown_menu">
+      <option value="Vellore">Vellore</option>
+      <option value="Ranipet">Ranipet</option>
+      <option value="Goa">Goa</option>
+    </select><br>
+    Course info on: <br>
+    <input type="checkbox" value="">Engineering <br>
+    <input type="checkbox">IT <br>
+    <input type="checkbox">Law <br>
+    <input type="checkbox">Medicine <br>
+    <input type="checkbox">Nursing <br>
+
+    Degree: <br>
+
+    <input type="radio" name="1">Diploma<br>
+    <input type="radio" name="1">Degree<br>
+    <input type="radio" name="1">Honours<br>
+    <input type="radio" name="1">Masters<br>
+    <input type="radio" name="1">PhD<br>
+
+    Comments: <br>
+    <textarea name="comments" id="" cols="30" rows="10"></textarea><br><br>
+
+    Mail: <input type="text" id="sunni">
+
+    <button onclick="validate()">Submit</button>
+  </form>
+
+  <script>
+    function validate() {
+      var email = /^[a-zA-Z0-9_]+@gmail\.com$/;
+      var mail = document.getElementById('sunni').value;
+      if(!email.test(mail)){
+        alert("please enter valid");
+      }
+      else{
+        alert( "Form submitted successfully." );
+      }
+    } 
+  </script>
+
+</body>
+
+</html>
