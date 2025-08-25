@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Card - Chocolate Cake</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .section {
+      margin: 15px 0;
+    }
+    button {
+      display: inline-block;
+      margin: 5px 0;
+      padding: 8px 12px;
+      border: none;
+      background: #ff7043;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #ff5722;
+    }
+    ul li {
+      margin: 5px 0;
+      transition: color 0.3s, transform 0.3s;
+    }
+    ul li:hover {
+      color: #ff7043;
+      transform: scale(1.05);
+    }
+    .hidden {
+      display: none;
+    }
+    .steps li.active {
+      background: #ffebcc;
+      border-left: 4px solid #ff7043;
+      padding-left: 8px;
+    }
+
+    .progress-container {
+      background: #eee;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 10px;
+      width: 0%;
+      background: #ff7043;
+      transition: width 0.4s ease;
+    }
+   
+    @media (max-width: 600px) {
+      .card {
+        padding: 15px;
+      }
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🍫 Chocolate Cake</h1>
+    <img src="https://source.unsplash.com/500x300/?chocolate-cake" alt="Chocolate Cake">
+    
+    <div class="section">
+      <button onclick="toggleIngredients()">Show Ingredients</button>
+      <ul id="ingredients" class="hidden">
+        <li>2 cups flour</li>
+        <li>1 cup sugar</li>
+        <li>1/2 cup cocoa powder</li>
+        <li>2 eggs</li>
+        <li>1 cup milk</li>
+      </ul>
+    </div>
+
+   
+    <div class="section">
+      <button onclick="startCooking()">Start Cooking</button>
+      <button onclick="nextStep()">Next Step</button>
+      <ul id="steps" class="steps">
+        <li>Preheat the oven to 180°C.</li>
+        <li>Mix dry ingredients together.</li>
+        <li>Add eggs and milk, whisk until smooth.</li>
+        <li>Pour into a baking pan.</li>
+        <li>Bake for 30 minutes.</li>
+      </ul>
+    </div>
+
+   
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    
+    <p><strong>Prep Time:</strong> 15 mins | <strong>Servings:</strong> 4</p>
+  </div>
+
+  <script>
+    function toggleIngredients() {
+      const list = document.getElementById("ingredients");
+      list.classList.toggle("hidden");
+    }
+
+    
+    let currentStep = -1;
+    const steps = document.querySelectorAll("#steps li");
+    const progressBar = document.getElementById("progressBar");
+
+    function startCooking() {
+      currentStep = 0;
+      updateSteps();
+    }
+
+    function nextStep() {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        updateSteps();
+      }
+    }
+
+    function updateSteps() {
+      steps.forEach((step, index) => {
+        step.classList.toggle("active", index === currentStep);
+      });
+      
+      let progress = ((currentStep + 1) / steps.length) * 100;
+      progressBar.style.width = progress + "%";
+    }
+  </script>
+</body>
+</html>
