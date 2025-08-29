@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pro To-Do — Minimal Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>🗒️ Pro To-Do</h1>
+    <div class="header-actions">
+      <button id="exportBtn" class="ghost">Export</button>
+      <button id="importBtn" class="ghost">Import</button>
+      <label class="switch" title="Toggle dark mode">
+        <input type="checkbox" id="themeToggle" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="composer card">
+      <h2>Add a task</h2>
+      <form id="taskForm">
+        <input id="titleInput" type="text" placeholder="Task title (e.g., Submit assignment)" required />
+        <input id="tagsInput" type="text" placeholder="Tags (comma-separated)" />
+        <input id="dateInput" type="date" />
+        <select id="priorityInput" title="Priority">
+          <option value="normal">Priority: Normal</option>
+          <option value="high">Priority: High</option>
+          <option value="low">Priority: Low</option>
+        </select>
+        <button type="submit" class="primary">Add</button>
+      </form>
+    </section>
+
+    
+    <section class="toolbar card">
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Search tasks…" />
+      </div>
+      <div class="filters">
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="active">Active</option>
+          <option value="completed">Completed</option>
+          <option value="overdue">Overdue</option>
+        </select>
+        <select id="sortBy">
+          <option value="created">Sort by: Created</option>
+          <option value="due">Sort by: Due date</option>
+          <option value="priority">Sort by: Priority</option>
+          <option value="title">Sort by: Title</option>
+        </select>
+        <button id="clearCompleted" class="ghost">Clear completed</button>
+      </div>
+    </section>
+
+    
+    <section class="list card">
+      <div class="list-head">
+        <h2>Tasks</h2>
+        <span id="stats" class="muted"></span>
+      </div>
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+      <p id="emptyState" class="empty muted">No tasks yet. Add your first one above ✨</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>
+      Built for the internship final project — vanilla HTML, CSS, and JavaScript. 
+      Drag to reorder • Double-click title to edit.
+    </p>
+  </footer>
+
+  
+  <input type="file" id="importFile" accept="application/json" hidden />
+
+  
+  <template id="taskItemTemplate">
+    <li class="task" draggable="true">
+      <div class="left">
+        <input class="checkbox" type="checkbox" />
+        <span class="title" contenteditable="false"></span>
+        <span class="tags"></span>
+      </div>
+      <div class="right">
+        <span class="badge due"></span>
+        <span class="badge priority"></span>
+        <button class="ghost small editBtn" title="Edit">✎</button>
+        <button class="ghost small deleteBtn" title="Delete">🗑</button>
+        <span class="grabber" title="Drag to reorder">⋮⋮</span>
+      </div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

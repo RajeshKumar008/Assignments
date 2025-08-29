@@ -1,0 +1,96 @@
+
+:root {
+  --bg: #0b0c10;
+  --card: #151823;
+  --text: #e7e9ee;
+  --muted: #9aa3b2;
+  --primary: #7c5cff;
+  --danger: #ef4444;
+  --ok: #22c55e;
+  --border: #24283b;
+}
+
+:root.light {
+  --bg: #f7f7fb;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #5b21b6;
+  --danger: #b91c1c;
+  --ok: #15803d;
+  --border: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app-header, .app-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+input, select, button {
+  padding: .6rem .9rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+button.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+button.ghost { background: transparent; }
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.task.completed .title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.badge {
+  font-size: .8rem;
+  padding: .2rem .5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.badge.priority[data-level="high"] { color: var(--danger); }
+.badge.priority[data-level="low"] { color: var(--ok); }
+.badge.due.overdue { color: var(--danger); }
+.badge.due.today { color: var(--primary); }
+
+.empty { text-align: center; color: var(--muted); }
